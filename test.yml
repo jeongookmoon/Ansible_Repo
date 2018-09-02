@@ -1,0 +1,20 @@
+---
+- 
+  name: Webserver running
+  hosts: webtest
+  tasks:
+  - name: Execute action 'ping'
+    action: ping
+
+  - name: Install the Apache web server
+    raw: sudo yum -y install httpd
+
+  - name: Start web server
+    raw: sudo service httpd start
+
+  - name: Allowing ec2-user access to write
+    raw: sudo chown ec2-user /var/www/html
+    raw: sudo chmod -R o+r /var/www/html
+
+  - name: Create Hello World file
+    template: src=helloworld.html dest=/var/www/html/index.html

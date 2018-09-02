@@ -1,0 +1,8 @@
+---
+- 
+  name: Finishing test
+  hosts: webtest
+  tasks:
+  - name: Stop running Apache server
+    raw: sudo service httpd stop
+
